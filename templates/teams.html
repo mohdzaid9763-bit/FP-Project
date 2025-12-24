@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Teams - School ERP{% endblock %}
+
+{% block content %}
+<section class="teams-page">
+    <h2>Team</h2>
+    <p>Here are the team member names of this project:</p>
+
+    <div class="table-wrapper">
+        <table class="erp-table">
+            <thead>
+                <tr>
+                    <th>Sr. No</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Mr. Parth Bonde</td>
+                    <td>Team Leader</td>
+                    <td>parthbonde7387@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Mr. Amit Bagade</td>
+                    <td>Member</td>
+                    <td>amitbagde182@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Mr. Rohit More</td>
+                    <td>Member</td>
+                    <td>rohitmore199852@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Mr. Yogesh Gawande</td>
+                    <td>Member</td>
+                    <td>yogeshgawande374@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Mr. Mohd Zaid</td>
+                    <td>Member</td>
+                    <td>mohdzaid9763@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Mr. Jaykumar Jalit</td>
+                    <td>Member</td>
+                    <td>jalitjay@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Mr. Darshan Mankar</td>
+                    <td>Member</td>
+                    <td>darshanmankar103@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Mr. Aditya Prajapati</td>
+                    <td>Member</td>
+                    <td>prajapatiadi1546@gmail.com</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
+{% for member in teams %}
+<tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ member.name }}</td>
+    <td>{{ member.role }}</td>
+    <td>{{ member.email }}</td>
+</tr>
+{% endfor %}

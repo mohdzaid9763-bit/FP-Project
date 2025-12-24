@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-grid">
+    <div class="auth-info">
+      <h3>School ERP</h3>
+      <p>Create an account to manage classes, attendance, and fees effortlessly.</p>
+      <ul class="auth-features">
+        <li><span class="dot"></span><strong>Quick setup:</strong> Create an admin account in seconds.</li>
+        <li><span class="dot"></span><strong>Secure:</strong> Passwords are stored safely using hashing.</li>
+        <li><span class="dot"></span><strong>Manage:</strong> Students, teachers, attendance, fees, and notices.</li>
+        <li><span class="dot"></span><strong>Export:</strong> Reports ready for printing/export.</li>
+      </ul>
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-header">
+        <h2 class="auth-title">Create an Account</h2>
+        <div class="auth-subtitle">Join the School ERP system — it only takes a moment</div>
+      </div>
+
+      <form method="post" novalidate>
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" placeholder="Choose a username" required>
+
+        <label for="role">Role</label>
+        <select id="role" name="role">
+          <option value="teacher" selected>Teacher / Admin</option>
+          <option value="student">Student</option>
+        </select>
+
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" placeholder="Create a secure password" required>
+
+        <button class="btn btn-primary" type="submit">Create account</button>
+
+        <div class="auth-footer-link">Already have an account? <a href="{{ url_for('login') }}">Sign in</a></div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

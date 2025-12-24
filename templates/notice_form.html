@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }} Notice{% endblock %}
+{% block content %}
+<div class="centered-page">
+<div class="form-card">
+    <div class="form-head">
+        <div>
+            <h3>{{ action }} Notice</h3>
+            <p class="form-sub">Broadcast a message to selected classes or all students.</p>
+        </div>
+    </div>
+
+    <form method="post" class="form-grid">
+        <div class="form-field">
+            <label>Class (optional)</label>
+            <select name="class_id">
+                <option value="">All Classes</option>
+                {% for c in classes %}
+                    <option value="{{ c.id }}" {% if notice and notice.class_id == c.id %}selected{% endif %}>{{ c.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-field">
+            <label>Title <span class="form-required">*</span></label>
+            <input type="text" name="title" required value="{{ notice.title if notice else '' }}">
+        </div>
+
+        <div class="form-field">
+            <label>Date <span class="form-required">*</span></label>
+            <input type="date" name="created_at" required value="{{ notice.created_at if notice else '' }}">
+        </div>
+
+        <div class="form-field" style="grid-column: 1 / -1;">
+            <label>Message <span class="form-required">*</span></label>
+            <textarea name="message" rows="6" required>{{ notice.message if notice else '' }}</textarea>
+        </div>
+
+        <div class="form-actions" style="grid-column: 1 / -1;">
+            <button type="submit" class="btn-primary" aria-label="{{ action }} Notice">{{ action }}</button>
+            <a class="btn-secondary" href="{{ url_for('notices_list') }}">Cancel</a>
+        </div>
+    </form>
+</div>
+</div>
+{% endblock %}

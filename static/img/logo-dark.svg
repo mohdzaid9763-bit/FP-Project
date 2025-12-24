@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="School ERP logo (dark)">
+  <rect x="6" y="10" width="40" height="36" rx="4" fill="#1a2633" stroke="#284a61" />
+  <path d="M10 22h32M10 30h32M10 38h20" stroke="#a9d6ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="50" cy="16" r="8" fill="#ffd166" />
+  <path d="M46 14c1 1.5 4 1.5 5 0" stroke="#2b2b2b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

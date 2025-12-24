@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }} Student{% endblock %}
+{% block content %}
+<div class="centered-page">
+<div class="form-card">
+    <div class="form-head">
+        <div>
+            <h3>{{ action }} Student</h3>
+            <p class="form-sub">Add or update student details quickly.</p>
+        </div>
+    </div>
+
+    <form method="post" class="form-grid">
+        <div class="form-field">
+            <label>Name <span class="form-required">*</span></label>
+            <input type="text" name="name" required value="{{ student.name if student else '' }}">
+        </div>
+
+        <div class="form-field">
+            <label>Class <span class="form-required">*</span></label>
+            <input type="text" name="student_class" required value="{{ student.student_class if student else '' }}">
+        </div>
+
+        <div class="form-field">
+            <label>Age</label>
+            <input type="number" name="age" value="{{ student.age if student else '' }}">
+        </div>
+
+        <div class="form-actions" style="grid-column: 1 / -1;">
+            <button type="submit" class="btn-primary" aria-label="{{ action }} Student">
+                <!-- save icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+                <span>{{ action }}</span>
+            </button>
+            <a class="btn-secondary" href="{{ url_for('students_list') }}">Cancel</a>
+        </div>
+    </form>
+</div>
+</div>
+{% endblock %}

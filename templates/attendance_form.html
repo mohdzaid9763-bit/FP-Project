@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }} Attendance{% endblock %}
+{% block content %}
+<div class="centered-page">
+<div class="form-card">
+    <div class="form-head">
+        <div>
+            <h3>{{ action }} Attendance</h3>
+            <p class="form-sub">Choose student, class and mark attendance status.</p>
+        </div>
+    </div>
+
+    <form method="post" class="form-grid">
+        <div class="form-field">
+            <label>Student <span class="form-required">*</span></label>
+            <select name="student_id" required>
+                <option value="">-- Select Student --</option>
+                {% for s in students %}
+                    <option value="{{ s.id }}" {% if record and record.student_id == s.id %}selected{% endif %}>{{ s.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-field">
+            <label>Class <span class="form-required">*</span></label>
+            <select name="class_id" required>
+                <option value="">-- Select Class --</option>
+                {% for c in classes %}
+                    <option value="{{ c.id }}" {% if record and record.class_id == c.id %}selected{% endif %}>{{ c.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-field">
+            <label>Date <span class="form-required">*</span></label>
+            <input type="date" name="date" required value="{{ record.date if record else '' }}">
+        </div>
+
+        <div class="form-field">
+            <label>Status <span class="form-required">*</span></label>
+            <select name="status" required>
+                <option value="Present" {% if record and record.status == 'Present' %}selected{% endif %}>Present</option>
+                <option value="Absent" {% if record and record.status == 'Absent' %}selected{% endif %}>Absent</option>
+            </select>
+        </div>
+
+        <div class="form-actions" style="grid-column:1 / -1;">
+            <button type="submit" class="btn-primary">{{ action }}</button>
+            <a class="btn-secondary" href="{{ url_for('attendance_list') }}">Cancel</a>
+        </div>
+    </form>
+</div>
+</div>
+{% endblock %}

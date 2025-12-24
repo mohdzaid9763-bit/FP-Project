@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }} Exam{% endblock %}
+{% block content %}
+<div class="centered-page">
+<div class="form-card">
+    <div class="form-head">
+        <div>
+            <h3>{{ action }} Exam</h3>
+            <p class="form-sub">Schedule exams and add any explanatory remarks.</p>
+        </div>
+    </div>
+
+    <form method="post" class="form-grid">
+        <div class="form-field">
+            <label>Name <span class="form-required">*</span></label>
+            <input type="text" name="name" required value="{{ exam.name if exam else '' }}">
+        </div>
+
+        <div class="form-field">
+            <label>Exam Date <span class="form-required">*</span></label>
+            <input type="date" name="exam_date" required value="{{ exam.exam_date if exam else '' }}">
+        </div>
+
+        <div class="form-field" style="grid-column:1 / -1;">
+            <label>Remarks</label>
+            <input type="text" name="remarks" value="{{ exam.remarks if exam else '' }}">
+        </div>
+
+        <div class="form-actions" style="grid-column:1 / -1;">
+            <button type="submit" class="btn-primary">{{ action }}</button>
+            <a class="btn-secondary" href="{{ url_for('exams_list') }}">Cancel</a>
+        </div>
+    </form>
+</div>
+</div>
+{% endblock %}

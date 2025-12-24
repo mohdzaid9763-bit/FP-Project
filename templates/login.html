@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-grid">
+    <div class="auth-info">
+      <h3>Welcome to School ERP</h3>
+      <p>Experience the future of school management with our comprehensive ERP system. Streamline operations, enhance communication, and improve educational outcomes.</p>
+      <ul class="auth-features">
+        <li><span class="dot"></span><strong>Secure:</strong> Passwords are hashed and sessions protected.</li>
+        <li><span class="dot"></span><strong>Simple:</strong> Easy-to-use dashboard for staff.</li>
+        <li><span class="dot"></span><strong>Reports:</strong> Exportable attendance and fee reports.</li>
+        <li><span class="dot"></span><strong>Responsive:</strong> Works on desktop and mobile.</li>
+      </ul>
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-header">
+        <h2 class="auth-title">Welcome Back</h2>
+        <div class="auth-subtitle">Sign in to continue to School ERP</div>
+      </div>
+
+      <div class="role-toggle">
+        <button type="button" class="btn-role active" data-role="student">Student</button>
+        <button type="button" class="btn-role" data-role="teacher">Teacher</button>
+      </div>
+
+      <form method="post" novalidate>
+        <input type="hidden" name="role" id="roleInput" value="student">
+
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" placeholder="Your username" required>
+
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" placeholder="••••••••" required>
+
+        <button class="btn btn-primary" type="submit">Sign In</button>
+
+        <div class="auth-footer-link">New user? <a href="{{ url_for('signup') }}">Create an account</a></div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

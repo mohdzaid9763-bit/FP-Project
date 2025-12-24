@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }} Class{% endblock %}
+{% block content %}
+<div class="centered-page">
+<div class="form-card">
+    <div class="form-head">
+        <div>
+            <h3>{{ action }} Class</h3>
+            <p class="form-sub">Create or update a class with room and teacher assignment.</p>
+        </div>
+    </div>
+
+    <form method="post" class="form-grid">
+        <div class="form-field">
+            <label>Name <span class="form-required">*</span></label>
+            <input type="text" name="name" required value="{{ class_data.name if class_data else '' }}">
+        </div>
+
+        <div class="form-field">
+            <label>Room</label>
+            <input type="text" name="room" value="{{ class_data.room if class_data else '' }}">
+        </div>
+
+        <div class="form-field">
+            <label>Class Teacher</label>
+            <input type="text" name="class_teacher" value="{{ class_data.class_teacher if class_data else '' }}">
+        </div>
+
+        <div class="form-actions" style="grid-column:1 / -1;">
+            <button type="submit" class="btn-primary">{{ action }}</button>
+            <a class="btn-secondary" href="{{ url_for('classes_list') }}">Cancel</a>
+        </div>
+    </form>
+</div>
+</div>
+{% endblock %}

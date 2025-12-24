@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="dashboard-hero">
+  <div class="hero-left">
+    <h1>Welcome{% if session.username %}, {{ session.username | e }}{% endif %}</h1>
+    <p class="hero-sub">Manage students, teachers, attendance, fees and notices all from one place.</p>
+  </div>
+  <div class="hero-right">
+    <div class="quick-actions">
+      <a href="{{ url_for('students_list') }}" class="btn btn-ghost">Students</a>
+      <a href="{{ url_for('teachers_list') }}" class="btn btn-ghost">Teachers</a>
+      <a href="{{ url_for('attendance_list') }}" class="btn btn-ghost">Attendance</a>
+      <a href="{{ url_for('notices_list') }}" class="btn btn-ghost">Notices</a>
+    </div>
+  </div>
+</div>
+
+<section class="dashboard-grid">
+  <div class="cards">
+    <div class="card card-students">
+      <div class="card-head">
+        <div class="icon">👩‍🎓</div>
+        <div>
+          <h4>Total Students</h4>
+          <div class="count">{{ total_students }}</div>
+        </div>
+      </div>
+      <div class="card-actions"><a href="{{ url_for('students_list') }}" class="btn">View</a></div>
+    </div>
+
+    <div class="card card-teachers">
+      <div class="card-head">
+        <div class="icon">✏️</div>
+        <div>
+          <h4>Total Teachers</h4>
+          <div class="count">{{ total_teachers }}</div>
+        </div>
+      </div>
+      <div class="card-actions"><a href="{{ url_for('teachers_list') }}" class="btn">View</a></div>
+    </div>
+
+    <div class="card card-classes">
+      <div class="card-head">
+        <div class="icon">🏫</div>
+        <div>
+          <h4>Total Classes</h4>
+          <div class="count">{{ total_classes }}</div>
+        </div>
+      </div>
+      <div class="card-actions"><a href="{{ url_for('classes_list') }}" class="btn">View</a></div>
+    </div>
+
+    <div class="card card-attendance">
+      <div class="card-head">
+        <div class="icon">📅</div>
+        <div>
+          <h4>Attendance Records</h4>
+          <div class="count">{{ total_attendance }}</div>
+        </div>
+      </div>
+      <div class="card-actions"><a href="{{ url_for('attendance_list') }}" class="btn">View</a></div>
+    </div>
+
+    <div class="card card-notices">
+      <div class="card-head">
+        <div class="icon">📣</div>
+        <div>
+          <h4>Notices</h4>
+          <div class="count">{{ total_notices }}</div>
+        </div>
+      </div>
+      <div class="card-actions"><a href="{{ url_for('notices_list') }}" class="btn">View</a></div>
+    </div>
+  </div>
+
+  <aside class="overview">
+    <div class="dashboard-graph">
+      <h3>School Overview</h3>
+      <div class="chart-wrap">
+        <canvas id="dashboardChart"
+                data-students="{{ total_students }}"
+                data-teachers="{{ total_teachers }}"
+                data-classes="{{ total_classes }}"
+                data-attendance="{{ total_attendance }}"
+                data-notices="{{ total_notices }}"></canvas>
+
+        <!-- Fallback for environments without Chart.js -->
+        <div id="dashboardBarChart" class="bar-chart" style="display:none"
+             data-students="{{ total_students }}"
+             data-teachers="{{ total_teachers }}"
+             data-classes="{{ total_classes }}"
+             data-attendance="{{ total_attendance }}"
+             data-notices="{{ total_notices }}">
+        </div>
+      </div>
+    </div>
+
+    <div class="recent-notices">
+      <h3>Recent Notices</h3>
+      <ul>
+        {% for n in recent_notices %}
+          <li>
+            <strong>{{ n.title }}</strong>
+            <div class="muted">{{ n.created_at }}</div>
+          </li>
+        {% else %}
+          <li>No notices yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </aside>
+</section>
+
+{% endblock %}

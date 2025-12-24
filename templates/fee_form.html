@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }} Fee{% endblock %}
+{% block content %}
+<div class="centered-page">
+<div class="form-card">
+    <div class="form-head">
+        <div>
+            <h3>{{ action }} Fee</h3>
+            <p class="form-sub">Record fee payments and statuses for students.</p>
+        </div>
+    </div>
+
+    <form method="post" class="form-grid">
+        <div class="form-field">
+            <label>Student Name <span class="form-required">*</span></label>
+            <input type="text" name="student_name" required value="{{ fee.student_name if fee else '' }}">
+        </div>
+
+        <div class="form-field">
+            <label>Amount <span class="form-required">*</span></label>
+            <input type="number" name="amount" step="0.01" required value="{{ fee.amount if fee else '' }}">
+        </div>
+
+        <div class="form-field">
+            <label>Paid Date</label>
+            <input type="date" name="paid_date" value="{{ fee.paid_date if fee else '' }}">
+        </div>
+
+        <div class="form-field">
+            <label>Status <span class="form-required">*</span></label>
+            <select name="status" required>
+                <option value="Paid" {% if fee and fee.status == 'Paid' %}selected{% endif %}>Paid</option>
+                <option value="Unpaid" {% if fee and fee.status == 'Unpaid' %}selected{% endif %}>Unpaid</option>
+            </select>
+        </div>
+
+        <div class="form-actions" style="grid-column:1 / -1;">
+            <button type="submit" class="btn-primary">{{ action }}</button>
+            <a class="btn-secondary" href="{{ url_for('fees_list') }}">Cancel</a>
+        </div>
+    </form>
+</div>
+</div>
+{% endblock %}
